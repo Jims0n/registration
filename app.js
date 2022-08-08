@@ -45,21 +45,15 @@ const Registration = new mongoose.model("Registration", registrationSchema);
 
 passport.use(Registration.createStrategy());
 
-passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-      return cb(null, {
-        id: user.id,
-        username: user.username,
-        picture: user.picture
-      });
-    });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
-  
-  passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-      return cb(null, user);
-    });
-  });
+});
 
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
