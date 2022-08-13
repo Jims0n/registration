@@ -1,6 +1,6 @@
 
 body {
-  background-color: #E8ECEF;
+  background-color: #a3f0a3;
 }
 
 .centered {
@@ -10,7 +10,7 @@ body {
 
 .secret-text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #fff;
-  background-color: #000;
+  background-color: rgb(0, 0, 0);
 }
