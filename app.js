@@ -33,7 +33,6 @@ mongoose.connect("mongodb+srv://Botterfly:Ope123@cluster0.8pupq.mongodb.net/regi
 const registrationSchema = new mongoose.Schema ({
     email: String,
     password: String,
-    googleId: String,
     secret: String
 });
 
@@ -63,7 +62,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
-    Registration.findOrCreate({ googleId: profile.id }, function (err, registration) {
+    Registration.findOrCreate({ password: profile.id }, function (err, registration) {
       return cb(err, registration);
     });
   }
